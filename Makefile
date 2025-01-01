@@ -19,7 +19,5 @@ test:
 	$(GO) test $(GOFLAGS) ./...
 deps:
 	$(GO) mod tidy
-release:
-	GOOS=linux GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BINARY_NAME)-linux-amd64 $(SRC_DIR)
 
 all: test build

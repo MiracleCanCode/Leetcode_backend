@@ -12,7 +12,7 @@ type Config struct {
 	Port        string
 }
 
-func NewConfig(logger *zap.Logger) *Config {
+func New(logger *zap.Logger) *Config {
 	if err := godotenv.Load(".env.local"); err != nil {
 		logger.Error("Failed load .env.local file:" + err.Error())
 	}

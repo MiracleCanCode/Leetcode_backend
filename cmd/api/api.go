@@ -3,27 +3,28 @@ package api
 import (
 	"net/http"
 
-	"github.com/MiracleCanCode/zaperr"
 	"github.com/clone_yandex_taxi/server/auth/config"
+	"github.com/clone_yandex_taxi/server/auth/internal/problems"
+	"github.com/clone_yandex_taxi/server/auth/pkg/db"
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 )
 
 type api struct {
-	addr          string
-	router        *mux.Router
-	logger        *zap.Logger
-	loggingErrors *zaperr.Zaperr
+	addr   string
+	router *mux.Router
+	logger *zap.Logger
+	db     *db.Db
 }
 
-func NewApi(logger *zap.Logger, loggingErrors *zaperr.Zaperr) *api {
-	cfg := config.NewConfig(logger)
+func New(logger *zap.Logger, db *db.Db) *api {
+	cfg := config.New(logger)
 
 	return &api{
-		addr:          cfg.Port,
-		router:        mux.NewRouter(),
-		logger:        logger,
-		loggingErrors: loggingErrors,
+		addr:   cfg.Port,
+		router: mux.NewRouter(),
+		logger: logger,
+		db:     db,
 	}
 }
 
@@ -33,5 +34,5 @@ func (s *api) Run() error {
 }
 
 func (s *api) FillEndpoints() {
-
+	problems.NewHandler(s.logger, s.router, s.db)
 }

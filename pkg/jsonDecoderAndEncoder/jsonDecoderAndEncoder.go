@@ -11,7 +11,7 @@ type JsonDecoderAndEncoder struct {
 	w http.ResponseWriter
 }
 
-func NewJsonDecoderAndEncoder(r *http.Request, w http.ResponseWriter) *JsonDecoderAndEncoder {
+func New(r *http.Request, w http.ResponseWriter) *JsonDecoderAndEncoder {
 	return &JsonDecoderAndEncoder{
 		r: r,
 		w: w,

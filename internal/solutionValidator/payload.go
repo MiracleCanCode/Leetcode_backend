@@ -1,6 +1,6 @@
-package examinationsolution
+package solutionvalidator
 
-type ExaminationsolutionRequest struct {
+type SolutionValidatorRequest struct {
 	Lang       string `json:"lang" validator:"required"`
 	Code       string `json:"code" validator:"required"`
 	SolutionId int    `json:"solution_id" validator:"required"`
