@@ -4,10 +4,15 @@ import (
 	"errors"
 
 	"github.com/clone_yandex_taxi/server/auth/internal/models"
-	"github.com/clone_yandex_taxi/server/auth/pkg/db"
+	"github.com/clone_yandex_taxi/server/auth/pkg/db/postgresql"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
+
+type Repository struct {
+	db     *postgresql.Db
+	logger *zap.Logger
+}
 
 type IRepository interface {
 	GetAll() ([]*models.Problem, error)
@@ -15,12 +20,7 @@ type IRepository interface {
 	Create(data *models.Problem) error
 }
 
-type Repository struct {
-	db     *db.Db
-	logger *zap.Logger
-}
-
-func NewRepository(db *db.Db, log *zap.Logger) *Repository {
+func NewRepository(db *postgresql.Db, log *zap.Logger) *Repository {
 	return &Repository{
 		db:     db,
 		logger: log,

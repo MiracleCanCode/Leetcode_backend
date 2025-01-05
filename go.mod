@@ -3,6 +3,7 @@ module github.com/clone_yandex_taxi/server/auth
 go 1.23.4
 
 require (
+	github.com/MiracleCanCode/example_configuration_logger v0.0.0-20241229044104-619cf4744562
 	github.com/MiracleCanCode/zaperr v0.0.0-20241227172607-6343074d7012
 	github.com/gorilla/mux v1.8.1
 	github.com/joho/godotenv v1.5.1
@@ -12,7 +13,6 @@ require (
 )
 
 require (
-	github.com/MiracleCanCode/example_configuration_logger v0.0.0-20241229044104-619cf4744562 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.7.2 // indirect

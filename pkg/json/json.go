@@ -1,4 +1,4 @@
-package jsondecoderandencoder
+package json
 
 import (
 	"encoding/json"
@@ -6,19 +6,19 @@ import (
 	"net/http"
 )
 
-type JsonDecoderAndEncoder struct {
+type io struct {
 	r *http.Request
 	w http.ResponseWriter
 }
 
-func New(r *http.Request, w http.ResponseWriter) *JsonDecoderAndEncoder {
-	return &JsonDecoderAndEncoder{
+func New(r *http.Request, w http.ResponseWriter) *io {
+	return &io{
 		r: r,
 		w: w,
 	}
 }
 
-func (s *JsonDecoderAndEncoder) Decode(payload any) error {
+func (s *io) Decode(payload any) error {
 	json := json.NewDecoder(s.r.Body)
 
 	if err := json.Decode(&payload); err != nil {
@@ -28,7 +28,7 @@ func (s *JsonDecoderAndEncoder) Decode(payload any) error {
 	return nil
 }
 
-func (s *JsonDecoderAndEncoder) Encode(payload any) error {
+func (s *io) Encode(payload any) error {
 	json := json.NewEncoder(s.w)
 
 	if err := json.Encode(&payload); err != nil {

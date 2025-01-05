@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/clone_yandex_taxi/server/auth/pkg/db"
-	jsondecoderandencoder "github.com/clone_yandex_taxi/server/auth/pkg/jsonDecoderAndEncoder"
+	"github.com/clone_yandex_taxi/server/auth/pkg/db/postgresql"
+	json "github.com/clone_yandex_taxi/server/auth/pkg/json"
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 )
@@ -16,7 +16,7 @@ type Handler struct {
 	service *Service
 }
 
-func NewHandler(logger *zap.Logger, router *mux.Router, db *db.Db) {
+func NewHandler(logger *zap.Logger, router *mux.Router, db *postgresql.Db) {
 	handler := &Handler{
 		logger:  logger,
 		router:  router,
@@ -25,14 +25,14 @@ func NewHandler(logger *zap.Logger, router *mux.Router, db *db.Db) {
 
 	handler.router.HandleFunc("/api/problems/create", handler.Create()).Methods("POST")
 	handler.router.HandleFunc("/api/problems/getById/{id}", handler.GetById()).Methods("GET")
-	handler.router.HandleFunc("/api/problems/getAll", handler.GetAll()).Methods("GET")
+	handler.router.HandleFunc("/api/problems/getAll", handler.GetAll()).Methods("POST")
 }
 
 func (s *Handler) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 		var payload *CreateRequest
-		jsonDecodeAndEncode := jsondecoderandencoder.New(r, w)
+		jsonDecodeAndEncode := json.New(r, w)
 
 		if err := jsonDecodeAndEncode.Decode(&payload); err != nil {
 			s.logger.Error("Failed decode body, error:" + err.Error())
@@ -57,7 +57,7 @@ func (s *Handler) GetById() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 
-		jsonDecodeAndEncode := jsondecoderandencoder.New(r, w)
+		jsonDecodeAndEncode := json.New(r, w)
 		problemId := mux.Vars(r)
 		parseIdToUint, err := strconv.ParseUint(problemId["id"], 0, 64)
 		if err != nil {
@@ -85,7 +85,7 @@ func (s *Handler) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 		var payload *GetAllRequest
-		jsonDecodeAndEncode := jsondecoderandencoder.New(r, w)
+		jsonDecodeAndEncode := json.New(r, w)
 
 		if err := jsonDecodeAndEncode.Decode(&payload); err != nil {
 			s.logger.Error("Failed decode body, error:" + err.Error())

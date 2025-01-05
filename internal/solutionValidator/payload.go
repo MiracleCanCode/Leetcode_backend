@@ -1,7 +1,7 @@
 package solutionvalidator
 
-type SolutionValidatorRequest struct {
-	Lang       string `json:"lang" validator:"required"`
-	Code       string `json:"code" validator:"required"`
-	SolutionId int    `json:"solution_id" validator:"required"`
+type RequestPayload struct {
+	Lang      string `json:"lang" validator:"required"`
+	Code      string `json:"code" validator:"required"`
+	ProblemId int    `json:"problem_id" validator:"required"`
 }
