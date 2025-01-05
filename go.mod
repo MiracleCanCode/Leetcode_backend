@@ -4,7 +4,6 @@ go 1.23.4
 
 require (
 	github.com/MiracleCanCode/example_configuration_logger v0.0.0-20241229044104-619cf4744562
-	github.com/MiracleCanCode/zaperr v0.0.0-20241227172607-6343074d7012
 	github.com/gorilla/mux v1.8.1
 	github.com/joho/godotenv v1.5.1
 	go.uber.org/zap v1.27.0

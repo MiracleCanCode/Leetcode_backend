@@ -1,7 +1,5 @@
 github.com/MiracleCanCode/example_configuration_logger v0.0.0-20241229044104-619cf4744562 h1:b2tfks+iwkrPs+Apg5S2yOxXQ4rh+IVkSm7bdlMxg7o=
 github.com/MiracleCanCode/example_configuration_logger v0.0.0-20241229044104-619cf4744562/go.mod h1:zNkPIxlMFxEEA+w5en4H8l3XuBsrsu348r2rEWEaUiM=
-github.com/MiracleCanCode/zaperr v0.0.0-20241227172607-6343074d7012 h1:wmvGtHubh5lnPFh9A/+Smgn35ei+m36VsW/scpNnEZU=
-github.com/MiracleCanCode/zaperr v0.0.0-20241227172607-6343074d7012/go.mod h1:brOAAm3rLwZz6pNKxbt+fXbN7R3zRviTaOBqhczWzvQ=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
